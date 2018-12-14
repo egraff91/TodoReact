@@ -8,7 +8,7 @@ function App(){
 
   const listTodos = [{
     title: "Send a mail",
-    isDone: true
+    isDone: false
   },
 {
   title: "Finish TP",
