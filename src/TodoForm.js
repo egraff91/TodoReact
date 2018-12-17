@@ -25,7 +25,7 @@ export class TodoForm extends React.Component{
 
     handleSubmit(event){
 
-        this.props.handlerFromParent(this.state.todo);
+        this.props.createTodo(this.state.todo);
         this.setState({
             todo: ''
         })
@@ -34,7 +34,7 @@ export class TodoForm extends React.Component{
     }
 
     resetClicked(){
-        this.props.handlerFromParent();
+        this.props.clearTodos();
     }
 
     render(){
@@ -55,6 +55,6 @@ export class TodoForm extends React.Component{
 }
 
 TodoForm.PropType = {
-    todo: PropType.TodoItem,
-    handlerFromParent: PropType.func
+    createTodo: PropType.func.isRequired,
+    clearTodos: PropType.func.isRequired,
 }

@@ -15,33 +15,34 @@ import { TodoList } from './TodoList';
   isDone: false
 }]*/
 
-let listTodos = [];
+
 
 export class TodoContainer extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            listTodos: listTodos
+            listTodos: []
         }
 
         this.handleChange = this.handleChange.bind(this);
+        this.handleReset = this.handleReset.bind(this);
     }
 
     handleChange(data) {
-        //console.log("data ", data);
-        if(data){
-            listTodos.push({ title: data, isDone: false });
-            this.setState({
-                listTodos: listTodos
-            });
-        }else{
-            this.setState({
-                listTodos: ''
-            })
-        }
+        //console.log("data ", data); 
         
+        this.setState({
+            listTodos: [{ title: data, isDone: false }, ...this.state.listTodos]
+        });
     }
+
+    handleReset(){
+        this.setState({
+            listTodos: []
+        })
+    }
+
 
     render() {
         const listTodos = this.state.listTodos;
@@ -49,7 +50,7 @@ export class TodoContainer extends React.Component {
         return (
 
             <>
-                <TodoForm todo='' handlerFromParent={this.handleChange} />
+                <TodoForm createTodo={this.handleChange} clearTodos={this.handleReset}/>
                 {listTodos.length > 0 ? (
 
 
