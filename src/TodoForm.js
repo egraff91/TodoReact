@@ -1,4 +1,5 @@
 import React from 'react';
+import PropType from 'prop-types';
 
 
 
@@ -23,31 +24,37 @@ export class TodoForm extends React.Component{
     }
 
     handleSubmit(event){
-    
+
+        this.props.handlerFromParent(this.state.todo);
+        this.setState({
+            todo: ''
+        })
         event.preventDefault();
-        
-        this.props.handlerFromParant(this.state.todo);
        
     }
 
     resetClicked(){
-        console.log("cliqué");
-        this.props.handlerFromParant();
+        this.props.handlerFromParent();
     }
 
     render(){
         return (
             <>
-            <form onSubmit={this.handleSubmit}>
-                <label>
-                    Todo
-                    <input type="text" name="todo" value={this.state.todo} onChange={this.handleChange}/>
-                </label>
-                <input type="submit" value="Submit" />  
-            </form>
-            <button onClick={this.resetClicked}>Reset liste</button>
+                <form onSubmit={this.handleSubmit}>
+                    <label>
+                        Todo
+                        <input type="text" name="todo" value={this.state.todo} onChange={this.handleChange}/>
+                    </label>
+                    <input type="submit" value="Submit" />  
+                </form>
+                <button onClick={this.resetClicked}>Reset liste</button>
             </>
         )
     }
 
+}
+
+TodoForm.PropType = {
+    todo: PropType.TodoItem,
+    handlerFromParent: PropType.func
 }

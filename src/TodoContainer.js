@@ -29,30 +29,27 @@ export class TodoContainer extends React.Component {
     }
 
     handleChange(data) {
-        console.log("data ", data);
+        //console.log("data ", data);
         if(data){
             listTodos.push({ title: data, isDone: false });
-        this.setState({
-            listTodos: listTodos
-        });
+            this.setState({
+                listTodos: listTodos
+            });
         }else{
             this.setState({
                 listTodos: ''
             })
         }
         
-
-
-
     }
 
     render() {
         const listTodos = this.state.listTodos;
-        console.log(listTodos);
+        //console.log(listTodos);
         return (
 
             <>
-                <TodoForm todo='' handlerFromParant={this.handleChange} />
+                <TodoForm todo='' handlerFromParent={this.handleChange} />
                 {listTodos.length > 0 ? (
 
 
@@ -62,9 +59,6 @@ export class TodoContainer extends React.Component {
                         <p>Vous n'avez aucun todo</p>
                     )}
             </>
-
-
-
 
         );
     }

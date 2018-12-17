@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 
 export class TodoItem extends React.Component{
@@ -32,4 +33,9 @@ export class TodoItem extends React.Component{
         );
     }
     
+}
+
+TodoItem.PropTypes = {
+    title: PropTypes.string,
+    isDone: PropTypes.bool
 }
