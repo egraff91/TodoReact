@@ -8,8 +8,10 @@ export class TodoList extends React.Component{
 
     render(){
 
+        console.log("todos "+this.props.todos);
+
         const todolist = this.props.todos.map((todo)=> 
-        <TodoItem title={todo.title} isDone={todo.isDone}/>
+        <TodoItem key={todo.title} title={todo.title} isDone={todo.isDone}/>
             )
         return( 
             <>
