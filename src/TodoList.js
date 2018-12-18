@@ -13,11 +13,15 @@ export class TodoList extends React.Component{
             )
         return( 
             <>
-                <h3>Nombre de todos: {todolist.length}</h3>
-                <ul>{todolist}</ul>
+                {todolist.length > 0 ? (
+                   <> 
+                  <h3>Nombre de todos: {todolist.length}</h3>
+                  <ul>{todolist}</ul>
+                  </>  
+                ):(
+                    <p>Vous n'avez pas de todo</p>
+                )}      
             </>
-                 
-
         );
     }
 }
