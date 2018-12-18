@@ -1,5 +1,7 @@
 import React from 'react';
 import PropType from 'prop-types';
+import {connect} from 'react-redux';
+import { addTodo, resetTodos } from './store/todos.action';
 
 
 
@@ -24,8 +26,8 @@ export class TodoForm extends React.Component{
     }
 
     handleSubmit(event){
-
-        this.props.createTodo(this.state.todo);
+        
+        this.props.addTodo(this.state.todo);
         this.setState({
             todo: ''
         })
@@ -34,7 +36,9 @@ export class TodoForm extends React.Component{
     }
 
     resetClicked(){
-        this.props.clearTodos();
+        //this.props.clearTodos();
+        this.props.resetTodos();
+
     }
 
     render(){
@@ -58,3 +62,17 @@ TodoForm.PropType = {
     createTodo: PropType.func.isRequired,
     clearTodos: PropType.func.isRequired,
 }
+
+const mapStateToProps = state => ({
+    listTodos: state.todos.list
+});
+
+const mapDispatchToProps = dispatch => ({
+    addTodo: title => dispatch(addTodo(title)),
+    resetTodos: () => dispatch(resetTodos())
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(TodoForm)
